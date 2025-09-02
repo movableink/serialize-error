@@ -23,9 +23,9 @@ const list = [
 		constructor => [constructor.name, constructor],
 	);
 
-export const errorConstructors = new Map(list);
+const errorConstructors = new Map(list);
 
-export function addKnownErrorConstructor(constructor) {
+function addKnownErrorConstructor(constructor) {
 	const {name} = constructor;
 	if (errorConstructors.has(name)) {
 		throw new Error(`The error constructor "${name}" is already known.`);
@@ -40,3 +40,8 @@ export function addKnownErrorConstructor(constructor) {
 
 	errorConstructors.set(name, constructor);
 }
+
+module.exports = {
+	errorConstructors,
+	addKnownErrorConstructor
+};
